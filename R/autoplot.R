@@ -3,7 +3,7 @@
 #' @description Residual-based diagnostic plots for cumulative link and general
 #' regression models using \code{\link[ggplot2]{ggplot}} graphics.
 #'
-#' @param object An object of class \code{\link[sure]{resids}},
+#' @param object An object of class \code{sure:resids},
 #' \code{\link[ordinal]{clm}},
 #' \code{\link[stats]{glm}}, \code{\link[rms]{lrm}}, \code{\link[rms]{orm}},
 #' \code{\link[MASS]{polr}}, or \code{\link[VGAM]{vglm}}.
@@ -105,7 +105,6 @@
 #' p1 <- ggplot2::autoplot(fit, jitter.scale = "probability", output = "qq")
 #' p2 <- ggplot2::autoplot(fit, output = "covariate", x = df1$x)
 #' p3 <- ggplot2::autoplot(fit, output = "fitted")
-#' p4 <- ggplot2::autoplot(fit, output = "fitted", nsim = 10)
 #'
 autoplot.resid <- function(
   object,

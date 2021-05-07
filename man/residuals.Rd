@@ -6,7 +6,8 @@
 \alias{residuals.lrm}
 \alias{residuals.orm}
 \alias{residuals.polr}
-\alias{residuals.vglm}
+\alias{residuals,vglm-method}
+\alias{residuals,vgam-method}
 \alias{residuals.ord}
 \alias{residuals.PAsso}
 \title{Extract Model Residuals}
@@ -47,7 +48,16 @@
   ...
 )
 
-\method{residuals}{vglm}(
+\S4method{residuals}{vglm}(
+  object,
+  type = c("surrogate", "sign", "general", "deviance"),
+  jitter = c("latent", "uniform"),
+  jitter.uniform.scale = c("probability", "response"),
+  nsim = 1L,
+  ...
+)
+
+\S4method{residuals}{vgam}(
   object,
   type = c("surrogate", "sign", "general", "deviance"),
   jitter = c("latent", "uniform"),
@@ -80,17 +90,18 @@ are: "surrogate" (default), "sign", "general", and "deviance". Can be abbreviate
   \item{\code{deviance}}{deviance residuals (-2*loglik).}
 }}
 
-\item{jitter}{A character string specifying which method to use to generate the
-surrogate response values. Current options are \code{"latent"} and
-\code{"uniform"}. Default is \code{"latent"}.
+\item{jitter}{When the \code{type = "surrogate"}, this argument is a character string
+specifying which method to use to generate the surrogate response values. Current
+options are \code{"latent"} and \code{"uniform"}. Default is \code{"latent"}.
 \describe{
   \item{\code{latent}}{latent approach;}
   \item{\code{uniform}}{jittering uniform approach.}
 }}
 
-\item{jitter.uniform.scale}{A character string specifying the scale on which to perform
-the jittering whenever \code{jitter = "uniform"}. Current options are
-\code{"response"} and \code{"probability"}. Default is \code{"response"}.}
+\item{jitter.uniform.scale}{When the \code{jitter = "uniform"}, this is a character
+string specifying the scale on which to perform the jittering whenever
+\code{jitter = "uniform"}. Current options are \code{"response"} and \code{"probability"}.
+Default is \code{"response"}.}
 
 \item{nsim}{An integer specifying the number of replicates to use.
 Default is \code{1L} meaning one simulation only of residuals.}
@@ -174,14 +185,14 @@ res1 <- residuals(PAsso_1)
 Liu, Dungang and Zhang, Heping. Residuals and Diagnostics for Ordinal
 Regression Models: A Surrogate Approach.
 \emph{Journal of the American Statistical Association}.
-\url{http://www.tandfonline.com/doi/abs/10.1080/01621459.2017.1292915?journalCode=uasa20}
+\doi{10.1080/01621459.2017.1292915}
 
 Li, C., & Shepherd, B. E. (2010). Test of association between two ordinal
 variables while adjusting for covariates. \emph{Journal of the American Statistical
-Association}, 105(490), 612-620. \url{https://doi.org/10.1198/jasa.2010.tm09386}
+Association}, 105(490), 612-620. \doi{10.1198/jasa.2010.tm09386}
 
 
 Franses, Philip Hans, and Richard Paap. Quantitative models in marketing research.
 Cambridge University Press, 2001.
-\url{https://pdfs.semanticscholar.org/dad0/820f287a8cf5a4e8039549e35fc111fd86e5.pdf}
+\doi{10.1017/CBO9780511753794}
 }

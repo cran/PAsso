@@ -1,4 +1,29 @@
-context("PAsso: diagnostic.plot")
+context("diagnostic.plot(): Residual-based diagnostic plots")
+
+
+test_that("Test the fix of the Github Issue #5", {
+
+  # Skips
+  skip_on_cran()
+
+  # Load data
+  data("ANES2016")
+
+  phi2 <- PAsso(responses = c("PID", "selfLR", "TrumpLR", "ClinLR"),
+                adjustments = c("age", "edu.year", "income.num"),
+                data = ANES2016, method = "kendall",
+                model = c("acat", "acat", "acat", "acat"),
+                resids.type = "surrogate", jitter = "latent")
+
+  diag_fit <- diagnostic.plot(phi2, output = "fitted")
+
+  # Expectations
+  expect_true(max(phi2$rep_SRs[,1,1])<=0.5)
+  expect_true(min(phi2$rep_SRs[,1,1])>= -0.5)
+
+  expect_s3_class(diag_fit, "gtable")
+
+})
 
 test_that("diagnostic.plot works for \"PAsso\" objects", {
 
@@ -19,12 +44,20 @@ test_that("diagnostic.plot works for \"PAsso\" objects", {
   suppressWarnings(
     diag_p3 <- diagnostic.plot(object = PAsso_3v, output = "covariate")
   )
+
+  diag_cov1 <- diagnostic.plot(object = PAsso_3v, output = "covariate", x_name = "income.num", model_id = 2)
+  # diagnostic.plot(object = PAsso_1, output = "covariate", x_name = "age", model_id = 2)
+  # diagnostic.plot(object = PAsso_1, output = "covariate", x_name = "edu.year", model_id = 2)
+
+
   # Expectations
   expect_s3_class(diag_p1, "gtable")
   expect_s3_class(diag_p1, "gtable")
   expect_s3_class(diag_p1, "gtable")
   expect_s3_class(diag_p2, "gtable")
   expect_s3_class(diag_p3, "gtable")
+
+  expect_s3_class(diag_cov1, "ggplot")
 
   # expect_s3_class(diag_p2, "ggmatrix")
   # expect_s3_class(diag_p3, "ggmatrix")
@@ -198,9 +231,9 @@ test_that("diagnostic.plot work for \"vglm\" objects", {
   )
 
   # Expectations
-  expect_warning(diagnostic.plot(object = fit, output = "qq"), "does not know")
-  expect_warning(diagnostic.plot(object = fit, output = "fitted"), "does not know")
-  expect_warning(diagnostic.plot(object = fit, output = "covariate"), "does not know")
+  expect_warning(p1 <- diagnostic.plot(object = fit, output = "qq"), "does not know")
+  expect_warning(p2 <- diagnostic.plot(object = fit, output = "fitted"), "does not know")
+  expect_warning(p3 <- diagnostic.plot(object = fit, output = "covariate"), "does not know")
 
 })
 

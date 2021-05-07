@@ -1,3 +1,17 @@
+# PAsso 0.1.9
+
+## Minor changes
+
+1. Revise description of the package; 
+
+2. Update README file;
+
+## Bugs fixes
+
+1. Fix Issue #2. 
+
+2. Fix Issue #4, #5, and #6. 
+
 # PAsso 0.1.8
 
 ## Major changes
