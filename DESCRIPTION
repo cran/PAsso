@@ -8,7 +8,7 @@ Description: An implementation of the unified framework for assessing partial as
             and test partial associations between multiple ordinal variables. It can produce a number
             of $phi$ measures, partial regression plots, 3-D plots, and $p$-values for testing 
             $H_0: phi=0$ or $H_0: phi <= delta$.
-Version: 0.1.9
+Version: 0.1.10
 Authors@R: 
   c(person(given = "Xiaorui (Jeremy)", family = "Zhu",
            role = c("aut", "cre"),
@@ -37,10 +37,10 @@ Suggests: doParallel (>= 1.0.11), tidyverse, goftest, faraway, ordinal,
 LinkingTo: Rcpp
 RoxygenNote: 7.1.0
 NeedsCompilation: yes
-Packaged: 2021-05-07 03:54:00 UTC; Xiaorui
+Packaged: 2021-06-18 04:38:48 UTC; Xiaorui
 Author: Xiaorui (Jeremy) Zhu [aut, cre],
   Shaobo Li [aut],
   Dungang Liu [ctb, aut],
   Yuejie Chen [ctb]
 Repository: CRAN
-Date/Publication: 2021-05-07 04:50:06 UTC
+Date/Publication: 2021-06-18 09:20:08 UTC
